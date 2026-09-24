@@ -7,7 +7,7 @@ from airflow.decorators import dag, task
     dag_id="example_dag",    
     start_date=datetime(2025, 4, 24),
     description="A simple DAG with four tasks",
-    schedule_interval="* * * * *",
+    schedule="* * * * *",
     catchup=False #backfill is disabled
 )
 
