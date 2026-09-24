@@ -7,7 +7,7 @@ from airflow.decorators import dag, task
     dag_id="example_dag",    
     start_date=datetime(2025, 4, 24),
     description="A simple DAG with four tasks",
-    schedule_interval="*****",
+    schedule_interval="* * * * *",
     catchup=False #backfill is disabled
 )
 
@@ -38,3 +38,5 @@ def pipeline():
     t4 = forth_task()
 
     t1 >> t2 >> t3 >> t4
+
+pipeline()

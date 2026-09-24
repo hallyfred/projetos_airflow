@@ -1,24 +1,40 @@
+from datetime import datetime
 from time import sleep
 
-def first_task():
-    print("First task executed")
-    sleep(2)  # Simulate a delay for the first task
+from airflow.decorators import dag
 
-def second_task():
-    print("Second task executed")
-    sleep(2)  # Simulate a delay for the second task
-
-
-def third_task():
-    print("Third task executed")
-    sleep(2)  # Simulate a delay for the third task
-
+@dag(
+    dag_id="example_dag",
+    start_date=datetime(2025, 4, 24),
+    description="A simple DAG with four tasks",
+    schedule="* * * * *",
+    catchup=False #backfill is disabled
+)
 
 def pipeline():
-    first_task()
-    second_task()
-    third_task()
-    print("Pipeline completed") 
 
-if __name__ == "__main__":
-    pipeline()    
+    def first_task():
+        print("First task executed")
+        sleep(2)  # Simulate a delay for the first task
+
+    def second_task():
+        print("Second task executed")
+        sleep(2)  # Simulate a delay for the second task
+
+
+    def third_task():
+        print("Third task executed")
+        sleep(2)  # Simulate a delay for the third task
+
+    def forth_task():
+        print("Forth task executed")
+        sleep(2)  # Simulate a delay for the forth task    
+
+
+    def pipeline():
+        first_task()
+        second_task()
+        third_task()
+        forth_task()
+
+pipeline()
