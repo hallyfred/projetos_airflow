@@ -1,6 +1,6 @@
 # aqui criaremos um exemplo de dag com quatro tarefas,
 # onde a primeira tarefa será executada primeiro seguida pela segunda e terceira tarefas
-#  e finalmente a quarta tarefa será executada por último.
+# e finalmente a quarta tarefa será executada por último.
 
 
 from datetime import datetime
@@ -9,14 +9,14 @@ from time import sleep
 from airflow.decorators import dag, task
 
 @dag(
-    dag_id="example_dag",    
+    dag_id="pipeline_two",    
     start_date=datetime(2025, 4, 24),
     description="A simple DAG with four tasks",
     schedule="* * * * *",
     catchup=False #backfill is disabled
 )
 
-def pipeline():
+def pipeline_two():
     @task
     def first_task():
         print("First task executed")
@@ -47,4 +47,4 @@ def pipeline():
     t1.set_downstream([t2,t3])
     t3.set_downstream([t4])
 
-pipeline()
+pipeline_two()
